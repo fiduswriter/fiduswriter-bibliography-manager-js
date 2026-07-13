@@ -67,7 +67,7 @@ export const menuModel = () => ({
             title: gettext("Register new source"),
             keys: "Alt-n",
             action: overview => {
-                import("../form").then(({BibEntryForm}) => {
+                import("../form/index.js").then(({BibEntryForm}) => {
                     const form = new BibEntryForm(
                         overview.app.bibDB,
                         overview.app

@@ -470,7 +470,7 @@ export class BibliographyOverview {
             }
             case findTarget(event, ".edit-bib", el): {
                 const bibId = Number.parseInt(el.target.dataset.id)
-                import("../form").then(({BibEntryForm}) => {
+                import("../form/index.js").then(({BibEntryForm}) => {
                     const form = new BibEntryForm(
                         this.app.bibDB,
                         this.app,
@@ -507,7 +507,7 @@ export class BibliographyOverview {
 
     // find bibtex in pasted or dropped data.
     getBibtex(text) {
-        import("../import").then(({BibliographyImporter}) => {
+        import("../import/index.js").then(({BibliographyImporter}) => {
             const importer = new BibliographyImporter(
                 text,
                 this.app.bibDB,

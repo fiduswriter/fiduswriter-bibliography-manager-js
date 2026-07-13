@@ -48,7 +48,7 @@ export class BibliographyFileImportDialog {
                     activateWait()
                     const reader = new window.FileReader()
                     reader.onload = event => {
-                        import("./bibliography_import").then(
+                        import("./bibliography_import.js").then(
                             ({BibliographyImporter}) => {
                                 const importer = new BibliographyImporter(
                                     event.target.result,
