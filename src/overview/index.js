@@ -13,7 +13,7 @@ import {
     whenReady
 } from "fwtoolkit"
 import {baseBodyTemplate, FeedbackTab, SiteMenu} from "@fiduswriter/common"
-import {plugins} from "../../../plugins/bibliography_overview"
+import {plugins} from "../plugins/bibliography_overview"
 import {getBibTypeTitle} from "../form/strings"
 import {litToText, nameToText} from "../tools"
 import {bulkMenuModel, menuModel} from "./menu"

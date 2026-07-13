@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@fiduswriter/common": "^0.1.0",
-        "@fiduswriter/document": "file:../fiduswriter-document-js",
+        "@fiduswriter/document": "^0.2.16",
         "bibliojson": "^4.0.0",
         "fix-utf8": "2.0.1",
         "fwtoolkit": "^0.1.4",
