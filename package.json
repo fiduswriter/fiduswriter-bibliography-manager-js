@@ -1,0 +1,55 @@
+{
+    "name": "@fiduswriter/bibliography-manager",
+    "version": "0.1.0",
+    "description": "Fidus Writer bibliography manager",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@codeberg.org/fiduswriter/fiduswriter-bibliography-manager-js.git"
+    },
+    "license": "AGPL-3.0",
+    "author": "Johannes Wilm",
+    "type": "module",
+    "main": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./overview": "./dist/overview/index.js",
+        "./form": "./dist/form/index.js",
+        "./database": "./dist/database/index.js",
+        "./import": "./dist/import/index.js",
+        "./export": "./dist/export/index.js",
+        "./schema/*": "./dist/schema/*.js",
+        "./*": "./dist/*.js"
+    },
+    "files": [
+        "dist/",
+        "src/",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "dependencies": {
+        "@fiduswriter/common": "^0.1.0",
+        "@fiduswriter/document": "file:../fiduswriter-document-js",
+        "bibliojson": "^4.0.0",
+        "fix-utf8": "2.0.1",
+        "fwtoolkit": "^0.1.4",
+        "tokenfield": "^1.2.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.6.0",
+        "globals": "^15.15.0",
+        "prettier": "^3.5.3",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.62.0"
+    }
+}
