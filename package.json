@@ -37,8 +37,8 @@
         "format:check": "prettier --check ."
     },
     "dependencies": {
-        "@fiduswriter/common": "^0.1.0",
-        "@fiduswriter/document": "^0.2.16",
+        "@fiduswriter/common": "^0.1.3",
+        "@fiduswriter/document": "^0.2.17",
         "bibliojson": "^4.0.0",
         "fix-utf8": "2.0.1",
         "fwtoolkit": "^0.1.4",
