@@ -1,5 +1,5 @@
 import {TypeSwitch, getFocusIndex, setFocusIndex} from "fwtoolkit"
-import {LiteralFieldForm} from "./literal"
+import {LiteralFieldForm} from "./literal.js"
 
 // There are only range lists, no range fields in the data format. The separation
 // between RangeFieldForm and RangeListForm is for keeping consistency with other fields

@@ -2,7 +2,7 @@ import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
 
-import {litSchema} from "../../schema/literal"
+import {litSchema} from "../../schema/literal.js"
 
 export class LiteralFieldForm {
     constructor(dom, initialValue = [], placeHolder = false) {

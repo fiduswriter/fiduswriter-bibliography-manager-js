@@ -2,7 +2,7 @@ import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
 
-import {titleSchema} from "../../schema/title"
+import {titleSchema} from "../../schema/title.js"
 
 export class TitleFieldForm {
     constructor(dom, initialValue) {

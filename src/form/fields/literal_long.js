@@ -2,7 +2,7 @@ import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
 
-import {longLitSchema} from "../../schema/literal_long"
+import {longLitSchema} from "../../schema/literal_long.js"
 
 export class LiteralLongFieldForm {
     constructor(dom, initialValue = []) {

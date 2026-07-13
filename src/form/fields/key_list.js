@@ -1,5 +1,5 @@
 import {InputList} from "fwtoolkit"
-import {KeyFieldForm} from "./key"
+import {KeyFieldForm} from "./key.js"
 
 export class KeyListForm {
     constructor(dom, initialValue = [""], _unused, fieldType = undefined) {

@@ -1,5 +1,5 @@
 import {activateWait, addAlert, deactivateWait} from "fwtoolkit"
-import {BibliographyDBServerConnector} from "./server_connector"
+import {BibliographyDBServerConnector} from "./server_connector.js"
 
 const FW_LOCALSTORAGE_VERSION = "1.2"
 

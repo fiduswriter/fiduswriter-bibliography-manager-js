@@ -1,5 +1,5 @@
 import {InputList} from "fwtoolkit"
-import {NameFieldForm} from "./name"
+import {NameFieldForm} from "./name.js"
 
 export class NameListForm {
     constructor(dom, initialValue = [[]]) {

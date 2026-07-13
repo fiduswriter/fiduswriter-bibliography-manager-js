@@ -1,5 +1,5 @@
-import {BibLatexFileExporter} from "../export"
-import {BibliographyFileImportDialog} from "../import"
+import {BibLatexFileExporter} from "../export/index.js"
+import {BibliographyFileImportDialog} from "../import/index.js"
 
 export const bulkMenuModel = () => ({
     content: [

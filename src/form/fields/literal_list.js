@@ -1,5 +1,5 @@
 import {InputList} from "fwtoolkit"
-import {LiteralFieldForm} from "./literal"
+import {LiteralFieldForm} from "./literal.js"
 
 export class LiteralListForm {
     constructor(dom, initialValue = [[]]) {

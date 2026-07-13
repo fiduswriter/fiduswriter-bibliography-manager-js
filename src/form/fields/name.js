@@ -1,5 +1,5 @@
 import {TypeSwitch, getFocusIndex, setFocusIndex} from "fwtoolkit"
-import {LiteralFieldForm} from "./literal"
+import {LiteralFieldForm} from "./literal.js"
 
 // There are only name lists, no name fields in the data format. The separation
 // between NameFieldForm and NameListForm is for keeping consistency with other fields

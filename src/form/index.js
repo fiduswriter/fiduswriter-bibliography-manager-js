@@ -1,26 +1,26 @@
 import {BibFieldTypes, BibTypes} from "bibliojson"
 import {Dialog, DialogTabs, InfoRow, addAlert} from "fwtoolkit"
-import {dateToYear, litToText, nameToText} from "../tools"
-import {CatsForm} from "./cats"
-import {DateFieldForm} from "./fields/date"
-import {KeyFieldForm} from "./fields/key"
-import {KeyListForm} from "./fields/key_list"
-import {LiteralFieldForm} from "./fields/literal"
-import {LiteralListForm} from "./fields/literal_list"
-import {LiteralLongFieldForm} from "./fields/literal_long"
-import {NameListForm} from "./fields/name_list"
-import {RangeListForm} from "./fields/range_list"
-import {TagListForm} from "./fields/tag_list"
-import {TitleFieldForm} from "./fields/title"
-import {URIFieldForm} from "./fields/uri"
-import {VerbatimFieldForm} from "./fields/verbatim"
+import {dateToYear, litToText, nameToText} from "../tools.js"
+import {CatsForm} from "./cats.js"
+import {DateFieldForm} from "./fields/date.js"
+import {KeyFieldForm} from "./fields/key.js"
+import {KeyListForm} from "./fields/key_list.js"
+import {LiteralFieldForm} from "./fields/literal.js"
+import {LiteralListForm} from "./fields/literal_list.js"
+import {LiteralLongFieldForm} from "./fields/literal_long.js"
+import {NameListForm} from "./fields/name_list.js"
+import {RangeListForm} from "./fields/range_list.js"
+import {TagListForm} from "./fields/tag_list.js"
+import {TitleFieldForm} from "./fields/title.js"
+import {URIFieldForm} from "./fields/uri.js"
+import {VerbatimFieldForm} from "./fields/verbatim.js"
 import {
     BibFieldHelp,
     BibFieldTitles,
     BibTypeTitles,
     getBibFieldTitle
-} from "./strings"
-import {bibDialog} from "./templates"
+} from "./strings.js"
+import {bibDialog} from "./templates.js"
 
 const FIELD_FORMS = {
     f_date: DateFieldForm,

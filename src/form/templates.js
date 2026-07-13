@@ -1,6 +1,6 @@
 /** A template for the bibliography item edit dialog. */
 import {DialogTabs} from "fwtoolkit"
-import {getAllTypeTitles} from "./strings"
+import {getAllTypeTitles} from "./strings.js"
 
 const requiredFieldsTemplate = () =>
     `<table class="fw-dialog-table"><tbody id="eo-fields"></tbody></table>

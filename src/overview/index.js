@@ -13,11 +13,11 @@ import {
     whenReady
 } from "fwtoolkit"
 import {baseBodyTemplate, FeedbackTab, SiteMenu} from "@fiduswriter/common"
-import {plugins} from "../plugins/bibliography_overview"
-import {getBibTypeTitle} from "../form/strings"
-import {litToText, nameToText} from "../tools"
-import {bulkMenuModel, menuModel} from "./menu"
-import {editCategoriesTemplate} from "./templates"
+import {plugins} from "../plugins/bibliography_overview/index.js"
+import {getBibTypeTitle} from "../form/strings.js"
+import {litToText, nameToText} from "../tools.js"
+import {bulkMenuModel, menuModel} from "./menu.js"
+import {editCategoriesTemplate} from "./templates.js"
 
 export class BibliographyOverview {
     constructor({app, user}) {

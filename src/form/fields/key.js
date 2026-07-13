@@ -1,6 +1,6 @@
 import {TypeSwitch} from "fwtoolkit"
-import {getBibOptionTitle} from "../strings"
-import {LiteralFieldForm} from "./literal"
+import {getBibOptionTitle} from "../strings.js"
+import {LiteralFieldForm} from "./literal.js"
 
 export class KeyFieldForm {
     constructor(dom, initialValue, _unused, fieldType = undefined) {

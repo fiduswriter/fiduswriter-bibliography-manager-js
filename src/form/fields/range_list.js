@@ -1,5 +1,5 @@
 import {InputList} from "fwtoolkit"
-import {RangeFieldForm} from "./range"
+import {RangeFieldForm} from "./range.js"
 
 export class RangeListForm {
     constructor(dom, initialValue = [[]]) {

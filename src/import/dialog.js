@@ -1,5 +1,5 @@
 import {Dialog, activateWait, addAlert, deactivateWait} from "fwtoolkit"
-import {importBibFileTemplate} from "./templates"
+import {importBibFileTemplate} from "./templates.js"
 /** First step of the bibliography file import. Creates a dialog box to specify upload file.
  * Supports multiple formats: BibTeX/BibLaTeX, CSL-JSON, RIS, EndNote, Citavi, NBIB, ODT/DOCX citations.
  */
