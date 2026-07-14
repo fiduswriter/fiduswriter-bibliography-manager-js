@@ -7,7 +7,7 @@ import {
     sup,
     text,
     variable
-} from "@fiduswriter/document/bibliography/common"
+} from "./common.js"
 import {Schema} from "prosemirror-model"
 import {marks} from "prosemirror-schema-basic"
 

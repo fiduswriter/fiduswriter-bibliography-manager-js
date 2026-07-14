@@ -1,4 +1,4 @@
-import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
+import {ZipFileCreator} from "fwtoolkit/file/zip"
 import download from "downloadjs"
 
 export class BibLatexFileExporter {
