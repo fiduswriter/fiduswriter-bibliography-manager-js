@@ -13,16 +13,17 @@ import {
     whenReady
 } from "fwtoolkit"
 import {baseBodyTemplate, FeedbackTab, SiteMenu} from "@fiduswriter/common"
-import {plugins} from "../plugins/bibliography_overview/index.js"
+import {plugins as defaultBibPlugins} from "../plugins/bibliography_overview/index.js"
 import {getBibTypeTitle} from "../form/strings.js"
 import {litToText, nameToText} from "../tools.js"
 import {bulkMenuModel, menuModel} from "./menu.js"
 import {editCategoriesTemplate} from "./templates.js"
 
 export class BibliographyOverview {
-    constructor({app, user}) {
+    constructor({app, user}, bibPlugins = defaultBibPlugins) {
         this.app = app
         this.user = user
+        this.bibPlugins = bibPlugins
 
         this.lastSort = {column: 0, dir: "asc"}
     }
@@ -390,7 +391,7 @@ export class BibliographyOverview {
         this.plugins = {}
 
         return Promise.all(
-            plugins.map(([app, plugin]) => {
+            this.bibPlugins.map(([app, plugin]) => {
                 if (!this.app.settings.APPS.includes(app)) {
                     return Promise.resolve()
                 }
