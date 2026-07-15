@@ -1,20 +1,61 @@
-# @fiduswriter/bibliography-manager
+<p align="center">
+  <img src="logo.svg" alt="@fiduswriter/bibliography-manager" width="100" height="100">
+</p>
 
-Fidus Writer bibliography manager.
+<h1 align="center">@fiduswriter/bibliography-manager</h1>
 
-This package implements the bibliography management UI: the overview table, the
-entry form and field editors, import/export filters, and the client-side
-bibliography database connector.
+<p align="center">Bibliography manager UI and logic for Fidus Writer</p>
 
-## Build
+---
+
+## What it does
+
+Implements the browser-based bibliography management interface used in the
+Fidus Writer collaborative editor. Provides an overview table for browsing
+citations, an entry form with specialized field editors, a client-side
+database connector, and import/export filters for bibliography data.
+
+## Exports
+
+| Export | Description |
+|--------|-------------|
+| `BibliographyOverview` | Full overview table component showing all bibliography entries |
+| `BibEntryForm` | Entry form with per-field-type editors (names, dates, ranges, URIs, literals, etc.) |
+| `BibliographyDB` | Client-side connector to the server's bibliography database |
+| `importBibFile` | Import bibliography data from external files (BibTeX, CSL JSON, etc.) |
+| `exportBibFile` | Export bibliography data to external formats |
+
+## Installation
 
 ```bash
-npm install
-npm run build
+npm install @fiduswriter/bibliography-manager
 ```
 
-## Status
+## Usage
 
-This is an initial extraction from the main Fidus Writer Django app. The code is
-still JavaScript and will be migrated to TypeScript over time. The bibliography
-logic depends on `bibliojson` (previously published as `biblatex-csl-converter`).
+```ts
+import {
+    BibliographyOverview,
+    BibEntryForm,
+    BibliographyDB,
+    importBibFile,
+    exportBibFile
+} from "@fiduswriter/bibliography-manager"
+```
+
+The bibliography manager depends on `@fiduswriter/common` for page chrome and
+`fwtoolkit` for UI primitives.
+
+## Development
+
+```bash
+npm install          # Install dependencies
+npm run build        # Compile TypeScript to dist/
+npm run typecheck    # Check types without emitting
+npm run lint         # Lint with ESLint
+npm run format:check # Check formatting with Prettier
+```
+
+## License
+
+AGPL-3.0 — see [LICENSE](LICENSE) for details.
