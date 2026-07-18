@@ -338,7 +338,7 @@ export class BibliographyOverview {
                         ids: [],
                         titles: []
                     }
-                    this.dom
+                    document
                         .querySelectorAll("#edit-categories .category-form")
                         .forEach(el => {
                             const title = (el as HTMLInputElement).value.trim()
@@ -554,6 +554,28 @@ export class BibliographyOverview {
                     )
                 } else {
                     itemEl.parentElement!.removeChild(itemEl)
+                }
+                break
+            }
+            case event.type === "keydown" &&
+                (event.target as Element).matches(".category-form"): {
+                const itemEl = (event.target as HTMLElement).closest(
+                    ".fw-list-input"
+                )
+                if (!itemEl?.nextElementSibling) {
+                    itemEl?.insertAdjacentHTML(
+                        "afterend",
+                        `<tr class="fw-list-input">
+                            <td>
+                                <input type="text" class="category-form">
+                                <span class="fw-add-input icon-addremove" tabindex="0"></span>
+                            </td>
+                        </tr>`
+                    )
+                    const newInput = itemEl?.nextElementSibling?.querySelector(
+                        ".category-form"
+                    ) as HTMLInputElement | null
+                    newInput?.focus()
                 }
                 break
             }
