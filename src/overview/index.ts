@@ -108,7 +108,7 @@ export class BibliographyOverview {
         this.table = undefined
         this.dtBulk = undefined
 
-        const contentsEl = this.dom.querySelector(".fw-contents") as HTMLElement
+        const contentsEl = this.dom as HTMLElement
         contentsEl.innerHTML = ""
 
         const hiddenCols: number[] = [0]
