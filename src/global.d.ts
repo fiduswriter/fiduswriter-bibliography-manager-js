@@ -44,17 +44,6 @@ declare module "fwtoolkit/file/zip" {
     }
 }
 
-declare module "@fiduswriter/common" {
-    export function baseBodyTemplate(...args: unknown[]): string
-    export class FeedbackTab {
-        init(): void
-    }
-    export class SiteMenu {
-        constructor(app: unknown, section: string)
-        init(): void
-    }
-}
-
 // Globals provided by the Fidus Writer host page.
 
 declare function gettext(msgid: string): string

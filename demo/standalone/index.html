@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BibliographyOverview — Standalone Demo</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f6fa; color: #2c3e50; line-height: 1.6;
+  }
+  #app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .demo-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .demo-header h1 { font-size: 22px; margin-bottom: 4px; }
+  .demo-header p { color: #666; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="demo-header">
+  <h1>BibliographyOverview — Standalone Demo</h1>
+  <p>Running independently without <code>@fiduswriter/frontend</code> chrome</p>
+</div>
+<div id="app"></div>
+<script type="importmap">
+{
+  "imports": {
+    "fwtoolkit": "../../node_modules/fwtoolkit/dist/index.js",
+    "fwtoolkit/": "../../node_modules/fwtoolkit/dist/",
+    "bibliojson": "../../node_modules/bibliojson/dist/index.js",
+    "fix-utf8": "../../node_modules/fix-utf8/index.js",
+    "simple-datatables": "../../node_modules/simple-datatables/dist/module.min.js",
+    "@fiduswriter/bibliography-manager/overview": "../../dist/overview/index.js",
+    "@fiduswriter/bibliography-manager/form": "../../dist/form/index.js",
+    "@fiduswriter/bibliography-manager/": "../../dist/"
+  }
+}
+</script>
+<script type="module">
+// Minimal required globals for the standalone demo
+window.gettext = (msg) => msg
+window.interpolate = (fmt, args, named) => fmt
+window.staticUrl = (path) => path
+window.settings = { APPS: [] }
+
+import {BibliographyOverview} from "../../dist/overview/index.js"
+import {MockBibDB, mockBibPlugins} from "../mock/mock-db.js"
+
+// Create mock database with sample entries
+const mockDB = new MockBibDB()
+
+mockDB.addEntry({
+  cats: [],
+  entry_key: "doe2024",
+  bib_type: "article",
+  fields: {
+    title: [{type: "text", text: "A Sample Research Paper"}],
+    author: [{family: [{type: "text", text: "Doe"}], given: [{type: "text", text: "Jane"}]}],
+    date: "2024",
+    journal: [{type: "text", text: "Journal of Examples"}]
+  }
+})
+
+mockDB.addEntry({
+  cats: [],
+  entry_key: "smith2023",
+  bib_type: "book",
+  fields: {
+    title: [{type: "text", text: "Advanced Bibliography Management"}],
+    author: [{family: [{type: "text", text: "Smith"}], given: [{type: "text", text: "John"}]}],
+    date: "2023",
+    publisher: [{type: "text", text: "Academic Press"}]
+  }
+})
+
+mockDB.addEntry({
+  cats: [],
+  entry_key: "untitled2025",
+  bib_type: "misc",
+  fields: {
+    date: "2025"
+  }
+})
+
+// Build a minimal mock app object that satisfies BibliographyApp
+const mockApp = {
+  bibDB: mockDB,
+  isOffline: () => false,
+  settings: { APPS: [] },
+  name: "standalone-demo"
+}
+
+const container = document.getElementById("app")
+const overview = new BibliographyOverview(
+  { app: mockApp, container },
+  mockBibPlugins
+)
+
+overview.init().then(() => {
+  console.log("BibliographyOverview initialized in standalone mode")
+})
+</script>
+</body>
+</html>

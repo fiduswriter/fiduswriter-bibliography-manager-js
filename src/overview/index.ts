@@ -17,7 +17,6 @@ import type {DatatableBulk} from "fwtoolkit"
 import type {OverviewMenuModel} from "fwtoolkit/overview_menu"
 import type {ContentMenuInit} from "fwtoolkit/content_menu"
 import type {DataTable} from "simple-datatables"
-import {baseBodyTemplate, FeedbackTab, SiteMenu} from "@fiduswriter/common"
 import {plugins as defaultBibPlugins} from "../plugins/bibliography_overview/index.js"
 import {getBibTypeTitle} from "../form/strings.js"
 import {litToText, nameToText} from "../tools.js"
@@ -29,7 +28,7 @@ import type {
     NodeArray
 } from "../types/biblio.js"
 import {bulkMenuModel, menuModel} from "./menu.js"
-import {editCategoriesTemplate} from "./templates.js"
+import {bibliographyOverviewTemplate, editCategoriesTemplate} from "./templates.js"
 
 interface PluginExport {
     new (overview: BibliographyOverview): {init: () => Promise<unknown> | void}
@@ -40,7 +39,7 @@ type BibPlugin = [string, Record<string, PluginExport>]
 
 export class BibliographyOverview {
     app: BibliographyApp
-    user: Record<string, unknown>
+    container: HTMLElement
     bibPlugins: BibPlugin[]
     lastSort: {column: number; dir: "asc" | "desc"}
     dom!: HTMLElement
@@ -51,11 +50,11 @@ export class BibliographyOverview {
     plugins?: Record<string, {init: () => Promise<unknown> | void}>
 
     constructor(
-        {app, user}: {app: BibliographyApp; user: Record<string, unknown>},
+        {app, container}: {app: BibliographyApp; container: HTMLElement},
         bibPlugins: BibPlugin[] = defaultBibPlugins as BibPlugin[]
     ) {
         this.app = app
-        this.user = user
+        this.container = container
         this.bibPlugins = bibPlugins
 
         this.lastSort = {column: 0, dir: "asc"}
@@ -67,8 +66,6 @@ export class BibliographyOverview {
     init(): Promise<void> {
         return whenReady().then(() => {
             this.render()
-            const smenu = new SiteMenu(this.app, "bibliography")
-            smenu.init()
             this.menu = new OverviewMenuView(
                 this,
                 menuModel as () => OverviewMenuModel
@@ -85,22 +82,14 @@ export class BibliographyOverview {
     }
 
     render(): void {
-        this.dom = document.createElement("body")
-        this.dom.innerHTML = baseBodyTemplate({
-            contents: "",
-            user: this.user,
-            hasOverview: true,
-            app: this.app
-        })
-        document.body = this.dom
+        this.dom = this.container
+        this.dom.innerHTML = bibliographyOverviewTemplate()
         ensureCSS([
             staticUrl("css/bibliography.css"),
             staticUrl("css/prosemirror.css"),
             staticUrl("css/inline_tools.css")
         ])
         setDocTitle(gettext("Bibliography Manager"), this.app)
-        const feedbackTab = new FeedbackTab()
-        feedbackTab.init()
     }
 
     onResize(): void {

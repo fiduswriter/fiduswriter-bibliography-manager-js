@@ -36,19 +36,27 @@ export class BibliographyImporter {
     addToListCall: (ids: number[]) => void
     callback: (() => void) | false | undefined
     showAlerts: boolean
+    workerURL: string
 
     constructor(
         fileContents: string,
         bibDB: BibDBCollection,
         addToListCall: (ids: number[]) => void,
         callback: (() => void) | false | undefined,
-        showAlerts = true
+        showAlerts = true,
+        workerURL?: string
     ) {
         this.fileContents = fileContents
         this.bibDB = bibDB
         this.addToListCall = addToListCall
         this.callback = callback
         this.showAlerts = showAlerts
+        this.workerURL =
+            workerURL ||
+            new URL(
+                "./workers/bibliography_import_worker.js",
+                import.meta.url
+            ).href
     }
 
     init(): void {
@@ -66,9 +74,7 @@ export class BibliographyImporter {
         }
 
         // Use the worker for the detected format
-        const importWorker = makeWorker(
-            staticUrl("js/bibliography_import_worker.js")
-        )
+        const importWorker = makeWorker(this.workerURL)
         importWorker.onmessage = message => this.onMessage(message.data as ImportMessage)
         importWorker.postMessage({
             fileContents: this.fileContents,

@@ -29,3 +29,9 @@ export const editCategoriesTemplate = ({categories}: {categories: BibCategory[]}
             ${categoryFormsTemplate({categories})}
         </tbody>
     </table>`
+
+/** Returns the inner HTML structure of the bibliography overview page,
+ *  without any page chrome (body, menu, feedback tab). */
+export function bibliographyOverviewTemplate(): string {
+    return `<div id="bibliographyOverview" class="fw-overview"><div id="wait" class="fw-overview-wait"><i class="fa fa-spinner fa-pulse"></i></div></div><div id="unobtrusive-messages"></div>`
+}
