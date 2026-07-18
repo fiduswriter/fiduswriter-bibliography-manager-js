@@ -49,7 +49,8 @@
     "dist/",
     "src/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "logo.svg"
   ],
   "scripts": {
     "build": "tsc",
