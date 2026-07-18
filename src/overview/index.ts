@@ -48,6 +48,7 @@ export class BibliographyOverview {
     dtBulk?: DatatableBulk
     menu?: OverviewMenuView
     plugins?: Record<string, {init: () => Promise<unknown> | void}>
+    _boundHandleActivation?: (event: Event) => void
 
     constructor(
         {app, container}: {app: BibliographyApp; container: HTMLElement},
@@ -370,7 +371,7 @@ export class BibliographyOverview {
 
         const dialog = new Dialog({
             id: "edit-categories",
-            width: 350,
+            width: 420,
             height: 350,
             title: gettext("Edit Categories"),
             body: editCategoriesTemplate({
@@ -452,12 +453,10 @@ export class BibliographyOverview {
      * @function bibEvents
      */
     bindEvents(): void {
-        this.dom.addEventListener("click", event =>
+        this._boundHandleActivation = (event: Event) =>
             this.handleActivation(event)
-        )
-        this.dom.addEventListener("keydown", event =>
-            this.handleActivation(event)
-        )
+        document.body.addEventListener("click", this._boundHandleActivation)
+        document.body.addEventListener("keydown", this._boundHandleActivation)
 
         // Allow pasting of bibtex data.
         this.dom.addEventListener("paste", event => {
@@ -601,6 +600,17 @@ export class BibliographyOverview {
         if (this.menu) {
             this.menu.destroy()
             this.menu = undefined
+        }
+        if (this._boundHandleActivation) {
+            document.body.removeEventListener(
+                "click",
+                this._boundHandleActivation
+            )
+            document.body.removeEventListener(
+                "keydown",
+                this._boundHandleActivation
+            )
+            this._boundHandleActivation = undefined
         }
     }
 }
