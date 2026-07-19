@@ -64,7 +64,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.js"
   },
   "dependencies": {
-    "bibliojson": "^4.0.0",
+    "bibliojson": "4.0.3",
     "fix-utf8": "2.0.1",
     "fwtoolkit": "^0.1.9",
     "prosemirror-model": "^1.25.0",
