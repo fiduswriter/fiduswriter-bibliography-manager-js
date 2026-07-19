@@ -46,6 +46,7 @@ export class BibliographyImporter {
         showAlerts = true,
         workerURL?: string
     ) {
+        console.log(`BibliographyImporter constructor called with workerURL: ${workerURL}`)
         this.fileContents = fileContents
         this.bibDB = bibDB
         this.addToListCall = addToListCall
@@ -57,6 +58,7 @@ export class BibliographyImporter {
                 "./workers/bibliography_import_worker.js",
                 import.meta.url
             ).href
+        console.log(`this.workerURL: ${this.workerURL}`)
     }
 
     init(): void {

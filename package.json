@@ -1,6 +1,6 @@
 {
   "name": "@fiduswriter/bibliography-manager",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Fidus Writer bibliography manager",
   "repository": {
     "type": "git",
@@ -39,6 +39,10 @@
     "./schema/*": {
       "types": "./dist/schema/*.d.ts",
       "default": "./dist/schema/*.js"
+    },
+    "./bibliojson": {
+      "types": "./dist/bibliojson.d.ts",
+      "default": "./dist/bibliojson.js"
     },
     "./*": {
       "types": "./dist/*.d.ts",
@@ -89,7 +93,8 @@
       "prettier --write"
     ],
     "*.{ts,js,mjs}": [
-      "eslint --fix"
+      "eslint --fix",
+      "sh -c 'npm run typecheck'"
     ]
   }
 }
