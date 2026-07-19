@@ -559,7 +559,11 @@ export class BibliographyOverview {
             }
             case event.type === "keydown" &&
                 (event.target as Element).matches(".category-form"): {
-                const itemEl = (event.target as HTMLElement).closest(
+                const input = event.target as HTMLInputElement
+                if (!input.value.trim().length) {
+                    break
+                }
+                const itemEl = input.closest(
                     ".fw-list-input"
                 )
                 if (!itemEl?.nextElementSibling) {

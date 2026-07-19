@@ -1,5 +1,5 @@
 import {sniffFormat} from "bibliojson"
-import {addAlert, makeWorker} from "fwtoolkit"
+import {addAlert} from "fwtoolkit"
 import type {BibDBCollection, BibDBEntry, IdTranslation} from "../types/biblio.js"
 
 interface ImportMessage {
@@ -74,7 +74,7 @@ export class BibliographyImporter {
         }
 
         // Use the worker for the detected format
-        const importWorker = makeWorker(this.workerURL)
+        const importWorker = new Worker(this.workerURL, {type: "module"})
         importWorker.onmessage = message => this.onMessage(message.data as ImportMessage)
         importWorker.postMessage({
             fileContents: this.fileContents,
