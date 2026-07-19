@@ -1,6 +1,5 @@
-import {BibliographyImportWorker} from "./bibliography.js"
-
-addEventListener("message", message => {
+addEventListener("message", async message => {
+    const {BibliographyImportWorker} = await import("./bibliography.js")
     const {fileContents, format} = message.data
     const worker = new BibliographyImportWorker(
         fileContents,
