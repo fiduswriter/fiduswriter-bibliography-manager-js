@@ -70,7 +70,7 @@
   "dependencies": {
     "bibliojson": "4.0.3",
     "fix-utf8": "2.0.1",
-    "fwtoolkit": "^0.1.9",
+    "fwtoolkit": "^0.2.0",
     "prosemirror-model": "^1.25.0",
     "prosemirror-schema-basic": "^1.2.4",
     "tokenfield": "^1.2.2"
