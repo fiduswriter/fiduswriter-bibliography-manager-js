@@ -1,8 +1,10 @@
+import {Schema} from "prosemirror-model"
 import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
+import {longLitSpec} from "bibliojson"
 
-import {longLitSchema} from "../../schema/literal_long.js"
+const longLitSchema = new Schema(longLitSpec)
 
 export class LiteralLongFieldForm {
     inlineInput: InlineInput

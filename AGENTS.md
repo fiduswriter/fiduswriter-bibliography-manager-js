@@ -21,8 +21,11 @@ Code in this repository should be limited to:
 - Bibliography database client connector (`src/database/`).
 - Bibliography import filters (`src/import/`).
 - Bibliography export filters (`src/export/`).
-- Bibliography schema helpers (`src/schema/`).
 - Shared bibliography tools (`src/tools.js`).
+
+The ProseMirror schema specs previously in `src/schema/` have moved to the
+`bibliojson` package (`src/spec/`). This package now instantiates the schemas it
+needs (literal, title, long-literal) from those specs.
 
 Do **not** put in this repository:
 
@@ -55,7 +58,6 @@ The following UI patterns are currently here but may be generic enough for
 │   ├── form/             # Entry form and field editors
 │   ├── import/           # Import filters
 │   ├── overview/         # Overview table
-│   ├── schema/           # Bibliography schema helpers
 │   └── tools.js          # Shared utilities
 ├── dist/                 # Compiled JS, .d.ts and source maps (generated)
 ├── package.json

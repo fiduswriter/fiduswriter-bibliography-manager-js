@@ -36,10 +36,6 @@
       "types": "./dist/export/index.d.ts",
       "default": "./dist/export/index.js"
     },
-    "./schema/*": {
-      "types": "./dist/schema/*.d.ts",
-      "default": "./dist/schema/*.js"
-    },
     "./bibliojson": {
       "types": "./dist/bibliojson.d.ts",
       "default": "./dist/bibliojson.js"
@@ -68,11 +64,10 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.js"
   },
   "dependencies": {
-    "bibliojson": "4.0.3",
+    "bibliojson": "^4.0.4",
     "fix-utf8": "2.0.1",
     "fwtoolkit": "^0.2.0",
     "prosemirror-model": "^1.25.0",
-    "prosemirror-schema-basic": "^1.2.4",
     "tokenfield": "^1.2.2"
   },
   "devDependencies": {

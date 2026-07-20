@@ -1,8 +1,10 @@
+import {Schema} from "prosemirror-model"
 import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
+import {litSpec} from "bibliojson"
 
-import {litSchema} from "../../schema/literal.js"
+const litSchema = new Schema(litSpec)
 
 export class LiteralFieldForm {
     inlineInput: InlineInput

@@ -1,8 +1,10 @@
+import {Schema} from "prosemirror-model"
 import {toggleMark} from "prosemirror-commands"
 
 import {InlineInput, icon} from "fwtoolkit"
+import {titleSpec} from "bibliojson"
 
-import {titleSchema} from "../../schema/title.js"
+const titleSchema = new Schema(titleSpec)
 
 export class TitleFieldForm {
     inlineInput: InlineInput

@@ -25,8 +25,6 @@ export default {
         "^downloadjs$": "<rootDir>/test/mocks/downloadjs.js",
         "^fwtoolkit$": "<rootDir>/test/mocks/fwtoolkit.js",
         "^fwtoolkit/.*": "<rootDir>/test/mocks/fwtoolkit.js",
-        "^bibliojson$": "<rootDir>/test/mocks/bibliojson.js",
-        "^bibliojson/.*": "<rootDir>/test/mocks/bibliojson.js",
         "^pretty$": "<rootDir>/test/mocks/pretty.js",
         "^mathlive$": "<rootDir>/test/mocks/mathlive.js",
         "^mathlive/.*": "<rootDir>/test/mocks/mathlive.js",
