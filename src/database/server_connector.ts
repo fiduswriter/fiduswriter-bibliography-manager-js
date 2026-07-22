@@ -1,7 +1,7 @@
-import {post, postJson} from "fwtoolkit/network"
 import type {
     BibCategory,
     BibDBEntry,
+    BibliographyApi,
     BiblistResponse,
     DeleteBibEntriesRequest,
     DeleteCategoryRequest,
@@ -14,7 +14,11 @@ import type {
 
 // class for server calls of BibliographyDB.
 export class BibliographyDBServerConnector {
-    constructor() {}
+    bibliographyApi: BibliographyApi
+
+    constructor(bibliographyApi: BibliographyApi) {
+        this.bibliographyApi = bibliographyApi
+    }
 
     getDB(
         lastModified: number,
@@ -27,13 +31,10 @@ export class BibliographyDBServerConnector {
         numberOfEntries: number
         userId: number
     }> {
-        return postJson("/api/bibliography/biblist/", {
-            last_modified: lastModified,
-            number_of_entries: numberOfEntries,
-            user_id: localStorageOwnerId
-        }).then(({json}) => {
-            const response = json as BiblistResponse
-            return {
+        return this.bibliographyApi
+            .getDB(lastModified, numberOfEntries, localStorageOwnerId)
+            .then(response => {
+                return {
                 bibCats: response["bib_categories"],
                 bibList: response.hasOwnProperty("bib_list")
                     ? (response["bib_list"] as BibDBEntry[]).map(item =>
@@ -62,31 +63,22 @@ export class BibliographyDBServerConnector {
         tmpDB: Record<number, BibDBEntry>,
         isNew: boolean
     ): Promise<IdTranslation[]> {
-        return postJson("/api/bibliography/save/", {
-            is_new: isNew,
-            bibs: tmpDB
-        } as SaveBibEntriesRequest & Record<string, unknown>).then(
-            ({json}) => (json as {id_translations: IdTranslation[]})["id_translations"]
-        )
+        return this.bibliographyApi
+            .saveBibEntries(tmpDB, isNew)
+            .then(response => response.id_translations)
     }
 
     saveCategories(cats: SaveCategoriesRequest): Promise<BibCategory[]> {
-        return postJson("/api/bibliography/save_category/", cats as unknown as Record<string, unknown>).then(
-            ({json}) => {
-                return (json as SaveCategoriesResponse).entries
-            }
+        return this.bibliographyApi.saveCategories(cats).then(
+            response => response.entries
         )
     }
 
     deleteCategory(ids: number[]): Promise<Response> {
-        return post("/api/bibliography/delete_category/", {
-            ids
-        } as DeleteCategoryRequest & Record<string, unknown>)
+        return this.bibliographyApi.deleteCategory(ids)
     }
 
     deleteBibEntries(ids: number[]): Promise<Response> {
-        return post("/api/bibliography/delete/", {
-            ids
-        } as DeleteBibEntriesRequest & Record<string, unknown>)
+        return this.bibliographyApi.deleteBibEntries(ids)
     }
 }

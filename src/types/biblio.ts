@@ -174,6 +174,24 @@ export interface BibDBCollection {
     deleteBibEntries(ids: number[]): Promise<number[]>
 }
 
+/** API connector for bibliography server operations. */
+export interface BibliographyApi {
+    getDB(
+        lastModified: number,
+        numberOfEntries: number,
+        localStorageOwnerId: number
+    ): Promise<BiblistResponse>
+    saveBibEntries(
+        tmpDB: Record<number, BibDBEntry>,
+        isNew: boolean
+    ): Promise<SaveBibEntriesResponse>
+    saveCategories(
+        cats: SaveCategoriesRequest
+    ): Promise<SaveCategoriesResponse>
+    deleteCategory(ids: number[]): Promise<Response>
+    deleteBibEntries(ids: number[]): Promise<Response>
+}
+
 /** Subset of the main Fidus Writer app object used by bibliography code. */
 export interface BibliographyApp {
     bibDB: BibDBCollection
@@ -182,6 +200,9 @@ export interface BibliographyApp {
         APPS: string[]
     }
     name: string
+    apiConnectors: {
+        bibliography: BibliographyApi
+    }
 }
 
 // Maintain the legacy `BibDB` alias for bibliojson's type as well, but export
