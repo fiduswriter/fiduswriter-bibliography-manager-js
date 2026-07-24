@@ -1,115 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BibliographyOverview — Standalone Demo</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f5f6fa; color: #2c3e50; line-height: 1.6;
-  }
-  #app {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  .demo-header {
-    text-align: center;
-    margin-bottom: 24px;
-    padding: 16px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  .demo-header h1 { font-size: 22px; margin-bottom: 4px; }
-  .demo-header p { color: #666; font-size: 14px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@fiduswriter/bibliography-manager — Standalone Demo</title>
+
+  <!-- Layer 1: fwtoolkit base custom properties -->
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/colors.css" />
+
+  <!-- Layer 3: fwtoolkit component CSS (subset used by bibliography) -->
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/forms.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/buttons.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/dialog.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/data_table.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/dialog_table.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/common.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/pulldown.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/ui_tabs.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/content_menu.css" />
+  <link rel="stylesheet" href="../../node_modules/fwtoolkit/css/loader.css" />
+
+  <!-- Layer 4: Bibliography additive overrides -->
+  <link rel="stylesheet" href="../../css/colors.css" />
+  <link rel="stylesheet" href="../../css/forms.css" />
+
+  <!-- Layer 7: Bibliography component CSS -->
+  <link rel="stylesheet" href="../../css/bibliography.css" />
+
+  <style>
+    body {
+      font-family: Lato, sans-serif;
+      padding: 20px;
+      background: var(--main-background-color, #f2f2f2);
+      color: var(--main-text-color, #2c2723);
+    }
+    .demo-section {
+      margin: 24px 0;
+      padding: 16px;
+      background: var(--cs-white-background, #fff);
+      border: 1px solid var(--cs-white-border, #ccc);
+      border-radius: 4px;
+    }
+    .demo-section h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: var(--cs-5-background, #4c6860);
+    }
+  </style>
 </head>
 <body>
-<div class="demo-header">
-  <h1>BibliographyOverview — Standalone Demo</h1>
-  <p>Running independently without <code>@fiduswriter/frontend</code> chrome</p>
-</div>
-<div id="app"></div>
-<script type="importmap">
-{
-  "imports": {
-    "fwtoolkit": "../../node_modules/fwtoolkit/dist/index.js",
-    "fwtoolkit/": "../../node_modules/fwtoolkit/dist/",
-    "bibliojson": "../../node_modules/bibliojson/dist/index.js",
-    "fix-utf8": "../../node_modules/fix-utf8/index.js",
-    "simple-datatables": "../../node_modules/simple-datatables/dist/module.min.js",
-    "@fiduswriter/bibliography-manager/overview": "../../dist/overview/index.js",
-    "@fiduswriter/bibliography-manager/form": "../../dist/form/index.js",
-    "@fiduswriter/bibliography-manager/": "../../dist/"
-  }
-}
-</script>
-<script type="module">
-// Minimal required globals for the standalone demo
-window.gettext = (msg) => msg
-window.interpolate = (fmt, args, named) => fmt
-window.staticUrl = (path) => path
-window.settings = { APPS: [] }
+  <h1>@fiduswriter/bibliography-manager — Standalone Demo</h1>
+  <p>
+    This page loads bibliography CSS from the package and its fwtoolkit
+    dependency. No <code>@fiduswriter/frontend</code> is needed.
+  </p>
 
-import {BibliographyOverview} from "../../dist/overview/index.js"
-import {MockBibDB, mockBibPlugins} from "../mock/mock-db.js"
+  <div class="demo-section">
+    <h2>Custom property verification</h2>
+    <p>Tokenfield should use <code>var(--tokenfield-color)</code>:</p>
+    <div style="color:var(--tokenfield-color,#555);font-size:14px;padding:8px;background:var(--cs-light-background-hover,#e0e0e0);border-radius:4px;">
+      Example tokenfield text color (--tokenfield-color)
+    </div>
+  </div>
 
-// Create mock database with sample entries
-const mockDB = new MockBibDB()
+  <script type="module">
+    import { initSettings, addAlert } from '../../node_modules/fwtoolkit/dist/index.js'
 
-mockDB.addEntry({
-  cats: [],
-  entry_key: "doe2024",
-  bib_type: "article",
-  fields: {
-    title: [{type: "text", text: "A Sample Research Paper"}],
-    author: [{family: [{type: "text", text: "Doe"}], given: [{type: "text", text: "Jane"}]}],
-    date: "2024",
-    journal: [{type: "text", text: "Journal of Examples"}]
-  }
-})
+    initSettings({
+      staticUrl: (path) => `/static/${path}`,
+      getCsrfToken: () => null,
+      gettext: (msgid) => msgid,
+    })
 
-mockDB.addEntry({
-  cats: [],
-  entry_key: "smith2023",
-  bib_type: "book",
-  fields: {
-    title: [{type: "text", text: "Advanced Bibliography Management"}],
-    author: [{family: [{type: "text", text: "Smith"}], given: [{type: "text", text: "John"}]}],
-    date: "2023",
-    publisher: [{type: "text", text: "Academic Press"}]
-  }
-})
-
-mockDB.addEntry({
-  cats: [],
-  entry_key: "untitled2025",
-  bib_type: "misc",
-  fields: {
-    date: "2025"
-  }
-})
-
-// Build a minimal mock app object that satisfies BibliographyApp
-const mockApp = {
-  bibDB: mockDB,
-  isOffline: () => false,
-  settings: { APPS: [] },
-  name: "standalone-demo"
-}
-
-const container = document.getElementById("app")
-const overview = new BibliographyOverview(
-  { app: mockApp, container },
-  mockBibPlugins
-)
-
-overview.init().then(() => {
-  console.log("BibliographyOverview initialized in standalone mode")
-})
-</script>
+    addAlert('success', '@fiduswriter/bibliography-manager standalone demo loaded successfully.')
+    console.log('✅ fwtoolkit initialized. Bibliography CSS loaded from local css/ directory.')
+  </script>
 </body>
 </html>

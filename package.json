@@ -1,6 +1,6 @@
 {
   "name": "@fiduswriter/bibliography-manager",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Fidus Writer bibliography manager",
   "repository": {
     "type": "git",
@@ -46,10 +46,11 @@
     }
   },
   "files": [
+    "css/",
     "dist/",
     "src/",
-    "README.md",
     "LICENSE",
+    "README.md",
     "logo.svg"
   ],
   "scripts": {
@@ -62,12 +63,13 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.js",
-    "install-hooks": "husky"
+    "install-hooks": "husky",
+    "demo": "echo \"Open demo/standalone/index.html in a browser or run: npx http-server demo/standalone -p 8081 -c-1\""
   },
   "dependencies": {
     "bibliojson": "^4.0.4",
     "fix-utf8": "2.0.1",
-    "fwtoolkit": "^0.2.1",
+    "fwtoolkit": "^0.2.3",
     "prosemirror-commands": "^1.7.0",
     "prosemirror-model": "^1.25.0",
     "simple-datatables": "^10.2.0",
@@ -77,16 +79,43 @@
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
     "eslint": "^10.6.0",
+    "gettext-parser": "^9.1.1",
     "globals": "^15.15.0",
     "happy-dom": "^20.10.6",
+    "husky": "^9.1.7",
     "jest": "^30.4.2",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.5.3",
     "ts-jest": "^29.4.11",
     "ts-jest-resolver": "^2.0.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.0.8"
+    "typescript-eslint": "^8.62.0"
+  },
+  "fiduswriter": {
+    "css": {
+      "fwtoolkit": [
+        "colors.css",
+        "forms.css",
+        "buttons.css",
+        "dialog.css",
+        "data_table.css",
+        "dialog_table.css",
+        "common.css",
+        "pulldown.css",
+        "ui_tabs.css",
+        "content_menu.css",
+        "loader.css"
+      ],
+      "own": {
+        "additive": [
+          "colors.css",
+          "forms.css"
+        ],
+        "component": [
+          "bibliography.css"
+        ]
+      }
+    }
   },
   "lint-staged": {
     "*.{ts,js,mjs,css,md,json,html}": [
